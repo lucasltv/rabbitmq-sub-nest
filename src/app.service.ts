@@ -4,11 +4,12 @@ import { Injectable } from '@nestjs/common';
 @Injectable()
 export class AppService {
   @RabbitSubscribe({
-    exchange: 'exchange1',
+    exchange: 'amq.fanout',
     routingKey: 'subscribe-route',
-    queue: 'subscribe-queue',
+    // queue: 'subscribe-queue',
   })
-  public async pubSubHandler(msg: unknown) {
+  public async pubSubHandler(msg: any, amqpMsg: any) {
+    // const { correlationId } = amqpMsg.properties;
     console.log(`Received message: ${JSON.stringify(msg)} at ${new Date()}`);
   }
 }
