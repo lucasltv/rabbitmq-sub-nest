@@ -6,7 +6,7 @@ export class AppService {
   @RabbitSubscribe({
     exchange: 'amq.fanout',
     routingKey: 'subscribe-route',
-    // queue: 'subscribe-queue',
+    queue: 'subscribe-queue',
   })
   public async pubSubHandler(msg: any, amqpMsg: any) {
     // const { correlationId } = amqpMsg.properties;
